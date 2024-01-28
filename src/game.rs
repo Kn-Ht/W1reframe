@@ -26,7 +26,7 @@ impl GlobalState {
 }
 
 pub struct Game {
-    gamestate: GameState,
+    pub gamestate: GameState,
     pub state: GlobalState
 }
 
@@ -47,6 +47,8 @@ impl Game {
     }
     /// Render the title screen and check if a button was pressed
     pub fn render_title_screen(&mut self) {
+        const PADDING: f32 = 5.0;
 
+        draw_rectangle_lines(PADDING, PADDING, self.state.screen_w - 2.*PADDING, self.state.screen_h - 2.*PADDING, 2.0, LIGHTGRAY);
     }
 }

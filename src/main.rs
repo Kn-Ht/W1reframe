@@ -1,7 +1,7 @@
 use macroquad::prelude::*;
 
 mod game;
-use game::Game;
+use game::{Game, GameState};
 
 fn window_conf() -> Conf {
     Conf {
@@ -21,6 +21,10 @@ async fn main() {
 
     game.start_loop(|game| {
         clear_background(BLACK);
+
+        if let GameState::TitleScreen = game.gamestate {
+            game.render_title_screen();
+        }
 
         egui_macroquad::ui(|egui_ctx| {
             egui::Window::new("egui ❤ macroquad")
