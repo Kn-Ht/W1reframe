@@ -5,7 +5,16 @@ edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[profile.release]
+strip = true
+lto = true
+opt-level = 3
+codegen-units = 1
+
+[build-dependencies]
+winres = "0.1.12"
+
 [dependencies]
-egui = "0.25.0"
+egui = "0.21.0"
 egui-macroquad = "0.15.0"
-macroquad = { version = "0.4.4", features = ["audio"] }
+macroquad = { version = "0.3.25", features = ["audio"] }
