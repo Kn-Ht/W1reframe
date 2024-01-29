@@ -4,7 +4,7 @@ use macroquad::prelude::*;
 pub enum GameState {
     TitleScreen,
     Running,
-    Paused
+    Paused,
 }
 
 #[derive(Debug, Clone, Copy, Default)]
@@ -27,7 +27,7 @@ impl GlobalState {
 
 pub struct Game {
     pub gamestate: GameState,
-    pub state: GlobalState
+    pub state: GlobalState,
 }
 
 impl Game {
@@ -41,14 +41,21 @@ impl Game {
     pub async fn start_loop<F: Fn(&mut Self)>(&mut self, callback: F) -> ! {
         loop {
             self.state.update(); // 1. Update shared state
-            callback(self);      // 2. Run user-specified code
-            next_frame().await;  // 3. Render the frame
+            callback(self); // 2. Run user-specified code
+            next_frame().await; // 3. Render the frame
         }
     }
     /// Render the title screen and check if a button was pressed
     pub fn render_title_screen(&mut self) {
         const PADDING: f32 = 5.0;
 
-        draw_rectangle_lines(PADDING, PADDING, self.state.screen_w - 2.*PADDING, self.state.screen_h - 2.*PADDING, 2.0, LIGHTGRAY);
+        draw_rectangle_lines(
+            PADDING,
+            PADDING,
+            self.state.screen_w - 2. * PADDING,
+            self.state.screen_h - 2. * PADDING,
+            2.0,
+            LIGHTGRAY,
+        );
     }
 }
